@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 import TheMovieDbSource from '../../data/themoviedb-source';
 import UrlParser from '../../routes/url-parser';
 import {
@@ -9,7 +10,7 @@ const Detail = {
   async render() {
     return `
     <div id="movie" class="movie"></div>
-    <div id="createLikeButtonTemplate"></div>
+    <div id="likeButtonContainer"></div>
     `;
   },
 
@@ -17,8 +18,12 @@ const Detail = {
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const movie = await TheMovieDbSource.detailMovie(url.id);
     const movieContainer = document.querySelector('#movie');
+    const likeButtonContainer = document.querySelector(
+      '#likeButtonContainer'
+    );
+
     movieContainer.innerHTML = createMovieDetailTemplate(movie);
-    createLikeButtonTemplate.innerHTML = createLikeButtonTemplate();
+    likeButtonContainer.innerHTML = createLikeButtonTemplate();
   },
 };
 
